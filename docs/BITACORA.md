@@ -2,38 +2,40 @@
 
 ## PE. 14/09/2026 - Patrón
 
-**Fecha PE indicada por la consigna:** 14/09/2026.  
-**Fecha real de implementación y verificación:** 04/10/2026.  
-**Autor del proyecto:** Rubén E. Albarracín.  
-**Registro elaborado con asistencia de IA, pendiente de revisión personal del estudiante.**
+**Fecha PE de la consigna:** 14/09/2026.\
+**Fecha real de implementación y ajuste:** 04/10/2026.\
+**Autor del proyecto:** Rubén E. Albarracín.\
+**Registro preparado con IA; pendiente de revisión personal del estudiante.**
 
 ### Contexto
 
-El repositorio académico tenía únicamente la estructura del TP1 (`9576cbd`), sin evaluadores ni bitácora. Se agregaron dos actividades originales y una primera evaluación simple (`e2a3ba8`). El problema analizado es la organización de dos reglas educativas distintas, no una duplicación encontrada en código previo. La aplicación original permanece ajena a esta entrega.
+El TP1 solo tenía carpetas y documentación (`9576cbd`). Se agregaron dos ejercicios originales: opción múltiple y cálculo de Patrimonio Neto. Cada uno necesita una regla de corrección diferente. No había código previo con duplicación.
 
 ### Alternativas consideradas
 
-Función discriminada sin patrón (suficiente para estos dos casos), Strategy para encapsular cada regla, Factory Method para creación y Observer para reacciones. Los dos últimos no responden a la variación de corrección existente.
+Una función con los dos casos, Strategy para separar las reglas, Factory Method para crear objetos y Observer para avisar a varios receptores. Los dos últimos no resuelven el problema de corrección.
 
 ### Decisión
 
-Separar UI, datos y evaluación; implementar únicamente Strategy con un contrato genérico, dos estrategias y un contexto que delega. La selección se realiza fuera del contexto. Se acepta como aplicación académica acotada y no como necesidad inevitable de un producto pequeño. La justificación completa y las referencias al dossier están en `TP2_PATRON.md`.
+Separar formularios, datos y evaluación. Usar Strategy: el evaluador recibe una estrategia y le pide corregir. Con dos ejercicios, la función simple también funciona. Se conservó en `evaluarSinPatron.ts` para comparar con la versión final.
 
 ### Consecuencias
 
-Las reglas se prueban por separado y el contexto desconoce la lógica concreta. Aumentan los archivos y la indirección; se conserva la alternativa simple para contrastar. Se documenta el alcance introductorio y la tolerancia decimal. No se implementan facturación real, reglas ARCA, backend, persistencia ni el resto de la aplicación.
+Cada regla se puede cambiar y probar por separado. Hay más archivos y se debe elegir la estrategia fuera del evaluador. El beneficio puede crecer al agregar actividades, pero hoy la alternativa simple sigue siendo válida.
 
-### Verificación y corrección
+### Comprobaciones del asistente
 
-Se ejecutaron compilación TypeScript/Vite y 27 pruebas automatizadas aprobadas. Se comprobó la interfaz con 9 casos en Chrome headless, se inspeccionaron capturas de escritorio/móvil y no se observaron errores JavaScript ni desborde horizontal a 390 px. El primer chequeo detectó la falta de tipos de Vite para el CSS: se agregó `vite-env.d.ts` y la compilación pasó. No se modificaron fechas de Git para simular trabajo el 14/09.
+Se ejecutaron compilación TypeScript/Vite y 27 pruebas aprobadas. En la implementación inicial se probaron 9 casos de interfaz en Chrome y se revisaron capturas de escritorio y móvil. El error inicial al importar CSS se corrigió agregando `vite-env.d.ts`.
 
-### Reflexión sobre IA (borrador de 6 líneas para revisión del estudiante)
+En este ajuste se encontró Node.js 24.19.0 del entorno de Codex y npm 12.1.0 en una caché local, fuera del PATH. Se pasó a npm, se generó `package-lock.json` y se retiró el lockfile y la configuración de pnpm. Se comprobaron `npm ci`, tipos, las 27 pruebas y build. Se simplificaron los textos sin cambiar las actividades. No se repitió la prueba de navegador en este ajuste.
 
-Problema: se pidió evaluar dos actividades en un repositorio que solo contenía la estructura inicial.  
-Propuesta de IA: el asistente implementó primero una alternativa simple y luego Strategy para separar las reglas.  
-Análisis: se reconoció que dos casos no obligan a usar el patrón y se comparó con Factory Method y Observer.  
-Verificación: el asistente ejecutó compilación, 27 pruebas de reglas/delegación y 9 casos de interfaz en Chrome.  
-Corrección: se agregó la declaración de tipos de Vite tras el error de importación CSS y se mantuvo el alcance sin otros patrones.  
-Justificación: se propone aceptar la separación por su valor académico y la variación real; queda pendiente que el estudiante la revise y pueda defenderla.
+### Reflexión de IA: borrador de 6 líneas para revisar
 
-Este borrador relata el trabajo del asistente. Antes de entregar, el estudiante debe probar la aplicación, contrastar la decisión con la consigna y ajustar la reflexión a lo que haya revisado personalmente.
+Problema: se pidió corregir dos tipos de ejercicios y después resolver la ejecución en PowerShell.\
+Propuesta de IA: el asistente hizo una versión simple, aplicó Strategy y ajustó el proyecto para usar npm.\
+Análisis: se comparó Strategy con otras opciones y se reconoció que una función simple alcanza para dos ejercicios.\
+Verificación: el asistente comprobó instalación con npm, tipos, build y 27 pruebas; antes había probado 9 casos de interfaz.\
+Corrección: se agregó el tipo faltante para CSS y se reemplazó pnpm por npm, con comandos para usar la copia local encontrada.\
+Justificación: separar las reglas facilita cambiarlas por separado; queda pendiente mi revisión y decidir si esta solución cumple la consigna.
+
+El borrador cuenta las comprobaciones del asistente. El estudiante todavía debe ejecutar la aplicación, revisar el código y ajustar la reflexión a lo que haya comprobado personalmente.
