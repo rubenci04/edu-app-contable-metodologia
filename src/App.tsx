@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ResultadoEvaluacion } from './evaluation/types';
-import { evaluarSinPatron } from './evaluation/evaluarSinPatron';
+import { evaluadorOpcion, evaluadorEcuacion } from './evaluation/seleccion';
 
 function Devolucion({ resultado }: { resultado: ResultadoEvaluacion | null }) {
   return <div aria-live="polite" className="devolucion">{resultado && <>
@@ -19,7 +19,7 @@ export function App() {
       <h1>Edu App Contable</h1><p>Dos actividades para practicar y entender la devolución.</p></header>
     <div className="actividades">
       <section aria-labelledby="opcion-titulo"><h2 id="opcion-titulo">Documentos comerciales</h2>
-        <form onSubmit={event => { event.preventDefault(); setOpcionResultado(evaluarSinPatron({ tipo: 'opcion', seleccion })); }}>
+        <form onSubmit={event => { event.preventDefault(); setOpcionResultado(evaluadorOpcion.evaluar(seleccion)); }}>
           <fieldset><legend>¿Qué documento deja constancia de una compraventa?</legend>
           {['factura', 'recibo', 'remito'].map(opcion => <label key={opcion} className="opcion">
             <input type="radio" name="documento" value={opcion} checked={seleccion === opcion}
@@ -31,7 +31,7 @@ export function App() {
       <section aria-labelledby="ecuacion-titulo"><h2 id="ecuacion-titulo">Ecuación contable</h2>
         <p>Una organización tiene un Activo de 1200 y un Pasivo de 450. ¿Cuál es su Patrimonio Neto?</p>
         <p className="formula">Activo = Pasivo + Patrimonio Neto</p>
-        <form onSubmit={event => { event.preventDefault(); setEcuacionResultado(evaluarSinPatron({ tipo: 'ecuacion', patrimonioNeto: patrimonio })); }}>
+        <form onSubmit={event => { event.preventDefault(); setEcuacionResultado(evaluadorEcuacion.evaluar({ patrimonioNeto: patrimonio })); }}>
           <label htmlFor="patrimonio">Patrimonio Neto</label>
           <input id="patrimonio" type="text" inputMode="decimal" value={patrimonio}
             onChange={event => { setPatrimonio(event.target.value); setEcuacionResultado(null); }} aria-describedby="ayuda" />
