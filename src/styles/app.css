@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+:root { font-family: system-ui, sans-serif; color: #182c42; background: #f1f5fa; line-height: 1.6; }
+body { margin: 0; }
+main { max-width: 1050px; margin: auto; padding: 48px 24px; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 10px 0; line-height: 1.2; }
+h2 { font-size: 1.4rem; margin-top: 0; }
+.etiqueta, footer { color: #4d6178; }
+.actividades { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 32px 0; }
+section { background: white; border: 1px solid #d6e0eb; border-radius: 16px; padding: 28px; }
+fieldset { border: 0; padding: 0; margin: 0 0 24px; }
+legend { margin-bottom: 16px; }
+.opcion { display: flex; gap: 12px; align-items: center; padding: 10px; cursor: pointer; }
+input[type=text] { display: block; width: 100%; padding: 12px; border: 1px solid #637c95; border-radius: 6px; font: inherit; margin: 8px 0; }
+small { display: block; color: #4d6178; margin-bottom: 20px; }
+button { padding: 12px 20px; background: #174e87; border: 0; border-radius: 8px; color: white; font: inherit; cursor: pointer; }
+button:hover { background: #103c6b; }
+:focus-visible { outline: 3px solid #bf7500; outline-offset: 3px; }
+.formula { background: #edf4fc; padding: 12px; border-radius: 6px; }
+.devolucion { margin-top: 20px; min-height: 90px; }
+.devolucion p { margin-top: 4px; }
+@media (max-width: 720px) { .actividades { grid-template-columns: 1fr; } main { padding: 28px 16px; } section { padding: 20px; } }
